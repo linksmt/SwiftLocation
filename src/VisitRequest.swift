@@ -35,7 +35,9 @@ open class VisitRequest: Request {
 	fileprivate(set) var lastPlace: CLVisit?
 		/// Handler called when a new place is currently visited
 	open var onDidVisitPlace: VisitHandler?
-
+		/// Authorization did change
+	public var onAuthorizationDidChange: LocationHandlerAuthDidChange?
+	
 		/// Private vars
 	open var UUID: String = Foundation.UUID().uuidString
 	

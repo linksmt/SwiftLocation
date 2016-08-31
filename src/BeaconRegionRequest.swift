@@ -40,6 +40,8 @@ open class BeaconRegionRequest: NSObject, Request {
 	open var onStateDidChange: RegionStateDidChange?
 	open var onRangingBeacons: RegionBeaconsRanging?
 	open var onError: RegionMonitorError?
+	/// Authorization did change
+	public var onAuthorizationDidChange: LocationHandlerAuthDidChange?
 	
 	init?(beacon: Beacon, monitor: Event) {
 		self.type = monitor

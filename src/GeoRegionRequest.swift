@@ -47,6 +47,9 @@ open class GeoRegionRequest: NSObject, Request {
 	
 	open var rState: RequestState = .pending
 	
+		/// Authorization did change
+	public var onAuthorizationDidChange: LocationHandlerAuthDidChange?
+	
 	public init(coordinates: CLLocationCoordinate2D, radius: CLLocationDistance) {
 		self.UUID = Foundation.UUID().uuidString
 		self.region = CLCircularRegion(center: coordinates, radius: radius, identifier: self.UUID)

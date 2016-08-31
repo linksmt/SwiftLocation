@@ -44,6 +44,9 @@ open class LocationRequest: Request  {
 	
 	open weak var locator: LocationManager?
 	
+	/// Authorization did change
+	public var onAuthorizationDidChange: LocationHandlerAuthDidChange?
+	
 	open var rState: RequestState = .pending {
 		didSet {
 			switch rState {

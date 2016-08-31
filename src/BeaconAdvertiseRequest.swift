@@ -38,6 +38,8 @@ open class BeaconAdvertiseRequest: NSObject, Request {
 	fileprivate(set) var region: CLBeaconRegion
 	fileprivate(set) var RSSIPower: NSNumber?
 	fileprivate(set) var name: String
+	/// Authorization did change
+	public var onAuthorizationDidChange: LocationHandlerAuthDidChange?
 	
 	init?(name: String, proximityUUID: String, major: CLBeaconMajorValue? = nil, minor: CLBeaconMinorValue? = nil) {
 		self.name = name

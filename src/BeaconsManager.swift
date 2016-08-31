@@ -269,6 +269,16 @@ open class BeaconsManager : NSObject, CLLocationManagerDelegate, CBPeripheralMan
 		}
 	}
 	
+	private func dispatchAuthorizationDidChange(newStatus: CLAuthorizationStatus) {
+		func _dispatch(request: Request) {
+			request.onAuthorizationDidChange?(newStatus)
+		}
+		
+		self.monitoredBeaconRegions.forEach({ _dispatch(request: $0) })
+		self.monitoredGeoRegions.forEach({ _dispatch(request: $0) })
+	}
+	
+	
 	@objc open func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
 		switch status {
 		case .denied, .restricted:
@@ -281,6 +291,8 @@ open class BeaconsManager : NSObject, CLLocationManagerDelegate, CBPeripheralMan
 		default:
 			break
 		}
+		// Dispatch any request which listen for authorization changes
+		self.dispatchAuthorizationDidChange(newStatus: status)
 	}
 	
 	@objc open func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {

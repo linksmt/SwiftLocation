@@ -56,6 +56,8 @@ open class HeadingRequest: Request {
 	internal var onReceiveUpdates: HeadingHandlerSuccess?
 		/// Handler to call when an error has occurred
 	internal var onError: HeadingHandlerError?
+		/// Authorization did change
+	public var onAuthorizationDidChange: LocationHandlerAuthDidChange?
 	
 		/// Last heading received
 	fileprivate(set) var lastHeading: CLHeading?
