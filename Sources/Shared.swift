@@ -33,7 +33,6 @@
 import Foundation
 import CoreLocation
 import MapKit
-import SwiftyJSON
 
 /// Thread-safe list
 /// All functions and proprierties are thread-safe.
@@ -829,7 +828,7 @@ public class Place: CustomStringConvertible {
 	}
 	
 	internal static func load(placemarks: [CLPlacemark]) -> [Place] {
-		return placemarks.flatMap { Place(placemark: $0) }
+        return placemarks.compactMap { Place(placemark: $0) }
 	}
 	
 	public var description: String {
